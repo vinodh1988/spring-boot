@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+        <h1>  First Spring boot VIEW PAGE using JSP</h1>
 </body>
 </html>
