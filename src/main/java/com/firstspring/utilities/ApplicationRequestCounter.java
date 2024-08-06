@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Scope(value = "application", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class ApplicationRequestCounter {
 	
-	private Integer Counter;
+	private Integer Counter=0;
 
 	public Integer getCounter() {
 		return Counter;

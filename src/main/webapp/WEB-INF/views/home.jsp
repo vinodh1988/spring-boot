@@ -30,5 +30,11 @@
           %>
           </ul>
           
+          <h3>Counters</h3>
+          <hr/>
+          <% out.println("Number of requests this session: "+request.getAttribute("scount")); %>
+          <br/>
+          <% out.println("Number of requests to this app: "+request.getAttribute("acount")); %>
+          
 </body>
 </html>
