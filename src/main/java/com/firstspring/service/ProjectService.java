@@ -1,8 +1,11 @@
-package com.firstspring.services;
+package com.firstspring.service;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.firstspring.entities.Project;
 import com.firstspring.repositories.ProjectRepository;
 
 import jakarta.annotation.PostConstruct;
