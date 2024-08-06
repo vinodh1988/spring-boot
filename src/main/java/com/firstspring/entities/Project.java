@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 @Table(name="projects")
 public class Project {
 
+
 	@Id
 	private Integer projectno;
 	@Column
