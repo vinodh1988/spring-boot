@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <%@taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+ <%-- <%@ taglib prefix="c"  uri="jakarta.tags.core"%> --%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,10 +12,23 @@
         <h1>  First Spring boot VIEW PAGE using JSP</h1>
         <h3>Team</h3>
         <hr/>
-        <ul>
+       <%-- <ul>
+        
           <c:forEach items="${team}" var="x">
               <li> ${x} </li>
           </c:forEach>
         </ul>
+        --%>
+        <ul>
+        <%
+          String[] team= (String[]) request.getAttribute("team");
+          for(String x:team) {
+        %>
+          <li><%out.println(x); %> </li>
+          <% 
+          } 
+          %>
+          </ul>
+          
 </body>
 </html>
