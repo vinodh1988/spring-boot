@@ -32,9 +32,10 @@ public class ProjectService {
 		try {
 			Project pr=prepo.findByProjectno(p.getProjectno());
 			if(pr==null)
-				throw new RecordAlreadyExistsException();
-			else
 				prepo.save(p);
+			else
+				throw new RecordAlreadyExistsException();
+				
 		}
 		catch (RecordAlreadyExistsException e) {
 			// TODO: handle exception
