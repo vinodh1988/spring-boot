@@ -58,4 +58,13 @@ public class ProjectService {
 		}
 	}
 	
+	public void updateProject(Project p) throws RecordNotFoundException
+	{
+		Project pr=prepo.findByProjectno(p.getProjectno());
+		if(pr!=null)
+			prepo.save(pr);
+		throw new RecordNotFoundException();
+		
+	}
+	
 }
