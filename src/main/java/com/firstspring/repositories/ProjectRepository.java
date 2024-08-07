@@ -7,5 +7,7 @@ import com.firstspring.entities.Project;
 
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
     public Project findByProjectno(Integer projectno);
+    
+    public Project findByName(String name);
 }
 
