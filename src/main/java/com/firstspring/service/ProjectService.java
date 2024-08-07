@@ -58,15 +58,21 @@ public class ProjectService {
 		}
 	}
 	
-	public void updateProject(Project p) throws RecordNotFoundException
+	public void updateProject(Project p) throws Exception
 	{
 		
 		//This method definition assumes that project object has all the properties filled
 		// and no property is null
 		// in real implementation we should address null columns also
+		if(p.getProjectno()==null)
+			throw new Exception();
 		Project pr=prepo.findByProjectno(p.getProjectno());
-		if(pr!=null)
+		
+		if(pr!=null) {
+			p.setTeamsize(p.getTeamsize()==null?pr.getTeamsize():p.getTeamsize());
+			p.setName(p.getName()==null?pr.getName():p.getName());
 			prepo.save(p);
+		}
 		else
 		    throw new RecordNotFoundException();
 		
