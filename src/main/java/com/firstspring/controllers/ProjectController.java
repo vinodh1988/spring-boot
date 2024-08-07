@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.firstspring.entities.Project;
 import com.firstspring.service.ProjectService;
 import com.firstspring.utilities.RecordAlreadyExistsException;
+import com.firstspring.utilities.RecordNotFoundException;
 
 @RestController
 @RequestMapping("/api/projects")
@@ -25,6 +27,19 @@ public class ProjectController {
 	@GetMapping("")
 	public List<Project> getProjects() {
 	   return pservice.getProjects();	
+	}
+	
+	@GetMapping("/{projectno}")
+	public ResponseEntity<Project> getProjects(@PathVariable Integer projectno) {
+	   try {
+		return new ResponseEntity<Project>(pservice.getProject(projectno),HttpStatus.OK);	
+	   }
+	   catch(RecordNotFoundException e) {
+		   return new ResponseEntity<Project>(HttpStatus.NO_CONTENT);
+	   }
+	   catch(Exception e) {
+		   return new ResponseEntity<Project>(HttpStatus.INTERNAL_SERVER_ERROR);
+	   }
 	}
 	
 	@PostMapping("")
