@@ -19,9 +19,14 @@ public class GlobalExceptionHandler {
 	}
 	
 	@ExceptionHandler(value= {RecordNotFoundException.class})
-	protected ResponseEntity<Object> handleIllegalArgumentException(RecordNotFoundException e){
+	protected ResponseEntity<Object> handleRecordNotFoundException(RecordNotFoundException e){
 		 String response= e.getMessage();
 		 return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
 	}
 	
+	@ExceptionHandler(value= {Exception.class})
+	protected ResponseEntity<Object> handleException(Exception e){
+		 String response= e.getMessage();
+		 return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
