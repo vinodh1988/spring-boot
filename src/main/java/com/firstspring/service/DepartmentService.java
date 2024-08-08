@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.firstspring.entities.Department;
+import com.firstspring.entities.Employee;
 import com.firstspring.repositories.DepartmentRepository;
 import com.firstspring.utilities.RecordAlreadyExistsException;
 
@@ -26,6 +27,8 @@ public class DepartmentService {
 				Department dd=drepo.getDepartmentByDno(d.getDno());
 				if(dd==null) {
 					Set<Employee> eset=d.getEmployees();
+					for(Employee e:eset)
+						e.setDept(d);
 					drepo.save(d);
 				}
 				else
