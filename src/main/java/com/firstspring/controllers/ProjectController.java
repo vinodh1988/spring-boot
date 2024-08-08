@@ -105,13 +105,18 @@ public class ProjectController {
 	}
 	
 	@DeleteMapping("{projectno}")
-	public ResponseEntity<String> deleteProject(@PathVariable Integer projectno){
+	public ResponseEntity<String> deleteProject(@PathVariable Integer projectno) throws Exception{
+		if(projectno<=0)
+			throw new IllegalArgumentException("Id Must be greater than 0");
+		
+	
+			
 		try {
 			pservice.deleteProject(projectno);
 			return new ResponseEntity<String>("Deleted the record",HttpStatus.OK);
 		}
 		catch(RecordNotFoundException e) {
-			return new ResponseEntity<String>("Deleted the record",HttpStatus.OK);
+			throw e;
 		}
 		catch(Exception e) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
