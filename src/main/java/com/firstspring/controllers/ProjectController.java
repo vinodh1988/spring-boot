@@ -20,8 +20,14 @@ import com.firstspring.service.ProjectService;
 import com.firstspring.utilities.RecordAlreadyExistsException;
 import com.firstspring.utilities.RecordNotFoundException;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/projects")
+@Tag(name = "Project List API", description="All the operations of project entity")
 public class ProjectController {
 
 	@Autowired
@@ -33,6 +39,16 @@ public class ProjectController {
 	}*/
 	
 	@GetMapping("")
+	@Operation(
+	   summary="Get Users",
+	   description="Get users either all or by team size giving min and max size"
+	)
+	@ApiResponses(
+		 value = {
+				 @ApiResponse(responseCode="200", description="Users are found"),
+				 @ApiResponse(responseCode="500", description="Server related error")
+		 }	
+		)
 	public ResponseEntity<List<Project>> getProjects(@RequestParam(required = false) Integer min,@RequestParam(required = false) Integer max) {
 	   try {
 		   if(min==null && max==null)
