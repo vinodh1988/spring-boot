@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: springbootproject 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springbootproject
+  template:
+    metadata:
+      labels:
+        app: springbootproject 
+    spec:
+      containers:
+        - name: springbootproject 
+          image: springboot1804.azurecr.io/springbootproject
+          ports:
+          - containerPort: 8080
