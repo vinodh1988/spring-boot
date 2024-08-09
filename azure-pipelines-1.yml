@@ -15,7 +15,7 @@ variables:
   imageRepository: 'springbootproject'
   containerRegistry: 'springboot1804.azurecr.io'
   dockerfilePath: '**/Dockerfile'
-  tag: '$(latest)'
+  tag: 'latest'
   imagePullSecret: 'springboot18045735a271-auth'
 
   # Agent VM image name
